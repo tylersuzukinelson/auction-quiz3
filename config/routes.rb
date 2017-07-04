@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :bids, only: [:create, :destroy]
   end
 
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:new, :create, :index, :show] do
 
   end
 

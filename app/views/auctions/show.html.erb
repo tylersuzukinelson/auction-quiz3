@@ -27,7 +27,7 @@
   <hr>
 <% end %>
 
-<% if can? :bid, @auction %>
+<% if user_signed_in? && (can? :bid, @auction) %>
   <h2>Submit your bid!</h2>
   <div class="">
     <%= render 'bids/form', bid: @bid %>
