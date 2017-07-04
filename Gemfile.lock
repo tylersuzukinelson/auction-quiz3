@@ -1,9 +1,25 @@
 GIT
+  remote: https://github.com/derekprior/momentjs-rails.git
+  revision: ea58a20b7b2c901831dd01f34e0054ef6c75bde8
+  specs:
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: ebf26149bf63c0d079e01c98e5bc226e33edd437
   specs:
     faker (1.8.0)
       i18n (~> 0.5)
+
+GIT
+  remote: https://github.com/zpaulovics/datetimepicker-rails.git
+  revision: 36d21cec5da7f5b214925804f60e63c61c747023
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.16)
+      momentjs-rails (>= 2.9.0)
 
 GEM
   remote: https://rubygems.org/
@@ -222,6 +238,7 @@ DEPENDENCIES
   byebug
   cancancan (~> 1.10)
   coffee-rails (~> 4.2)
+  datetimepicker-rails!
   factory_girl
   factory_girl_rails
   faker!
@@ -231,6 +248,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails (~> 4.1, >= 4.1.1)
   listen (>= 3.0.5, < 3.2)
+  momentjs-rails (~> 2.9)!
   pg (~> 0.18)
   puma (~> 3.7)
   rack-cors

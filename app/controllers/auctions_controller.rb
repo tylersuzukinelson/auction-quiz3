@@ -10,6 +10,7 @@ class AuctionsController < ApplicationController
   def show
     @bid = Bid.new
     @bids = @auction.bids.order(created_at: :desc)
+    render :show
   end
 
   def new

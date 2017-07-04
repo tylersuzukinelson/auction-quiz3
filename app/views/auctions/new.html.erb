@@ -4,6 +4,6 @@
   <%= f.input :details %>
   <%= f.input :reserve_price %>
   <%= f.input :current_price %>
-  <%= f.input :end_date %>
+  <%= f.input :end_date, :input_html => { :class => 'date_picker' } %>
   <%= f.submit %>
 <% end %>

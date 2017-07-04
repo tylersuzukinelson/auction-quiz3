@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :user do
-    name "MyString"
-    password_digest "MyString"
+    name Faker::Name.name
+    sequence(:email) { |n| Faker::Internet.email.gsub('@', "-#{n}@")}
+    password '123'
   end
 end
