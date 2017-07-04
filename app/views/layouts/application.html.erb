@@ -9,14 +9,27 @@
   </head>
 
   <body>
-    <nav class='pull-right'>
-      <% if user_signed_in? %>
+    <nav class=''>
+
+        <%= link_to 'All Auctions', auctions_path %> |
+        <%= link_to 'New Auction', new_auction_path %> |
+
+        <% if user_signed_in? %>
+        <%= link_to 'Your Bids', user_path(current_user) %> |
         Hello, <%= current_user.name %> |
         <%= link_to 'Sign Out', sessions_path, method: :delete %>
-      <% else %>
+        <% else %>
         <%= link_to 'Sign In', new_session_path %>
-      <% end %>
+        <% end %>
+
     </nav>
+    <div id='flash-message'>
+      <% if flash[:notice] %>
+        <div class='alert alert-success'> <%= flash[:notice] %></div>
+      <% elsif flash[:alert] %>
+        <div class='alert alert-danger'> <%= flash[:alert] %></div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

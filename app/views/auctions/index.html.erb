@@ -1,1 +1,19 @@
 <h1>All Auctions!</h1>
+
+  <table class='table table-hover'>
+    <tr>
+      <th>Title</th>
+      <th>Reserve Price</th>
+      <th>Current Price</th>
+      <th>Status</th>
+    </tr>
+    <% @auctions.each do |a| %>
+    <tr>
+      <td><%= link_to a.title, auction_path(a) %></td>
+      <td><%= a.reserve_price %></td>
+      <td><%= a.current_price %></td>
+      <td><%= a.aasm_state %></td>
+    </tr>
+    <% end %>
+
+  </table>

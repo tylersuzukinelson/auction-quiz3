@@ -1,0 +1,35 @@
+<h1><%= @auction.title %></h1>
+
+<% if can? :post, @auction %>
+  <% if @auction.aasm_state === 'draft' %>
+    <h2><%= link_to 'Publish Listing', auction_path(@auction, {aasm_state: 'published'}), method: :patch %></h2>
+  <% elsif @auction.aasm_state === 'canceled'  %>
+    <h2>You've canceled your auction.</h2>
+  <% else %>
+    <h2><%= link_to 'Cancel', auction_path(@auction, {aasm_state: 'canceled'}), method: :patch %></h2>
+  <% end %>
+<% end %>
+
+<div class="">
+  <p><%= @auction.details %></p>
+  <h3><strong>State: </strong><%= @auction.aasm_state %></h3>
+  <p><strong>End Date: </strong><%= @auction.end_date %></p>
+  <p><strong>Reserve Price: </strong><%= @auction.reserve_price %></p>
+  <p><strong>Current Price: </strong><%= @auction.current_price %></p>
+  <p><strong>Posted by: </strong><%= @auction.user.name %></p>
+</div>
+
+<h2>Bids</h2>
+<% @bids.each do |b| %>
+  <p><strong>Bid: </strong><%= b.bid %></p>
+  <p><strong>By: </strong><%= b.user.name %></p>
+  <p><%= b.created_at %></p>
+  <hr>
+<% end %>
+
+<% if can? :bid, @auction %>
+  <h2>Submit your bid!</h2>
+  <div class="">
+    <%= render 'bids/form', bid: @bid %>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+<h1>New Auction</h1>
+<%= simple_form_for @auction do |f| %>
+  <%= f.input :title %>
+  <%= f.input :details %>
+  <%= f.input :reserve_price %>
+  <%= f.input :current_price %>
+  <%= f.input :end_date %>
+  <%= f.submit %>
+<% end %>

@@ -5,14 +5,18 @@ class Ability
 
     user ||= User.new
 
-    can :bid, Auction do |Auction|
+    can :post, Auction do |auction|
+      auction.user == user
+    end
+
+    can :bid, Auction do |auction|
       auction.user != user
     end
 
-    cannot :bid, Auction do |Auction|
+    cannot :bid, Auction do |auction|
       auction.user == user
     end
 
   end
-  
+
 end

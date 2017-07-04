@@ -20,7 +20,8 @@ puts "#{User.count} users(listers) created."
                   end_date: Date.today + rand(100),
                   reserve_price: 100 + rand(900),
                   current_price: 50,
-                  user_id: listers.sample.id
+                  user_id: listers.sample.id,
+                  aasm_state: 'published'
                   )
 end
 auctions = Auction.all
@@ -44,6 +45,7 @@ auctions.each do |a|
                user: bidders.sample
                )
     a.current_price = bid
+    a.save
   end
 end
 bids = Bid.all

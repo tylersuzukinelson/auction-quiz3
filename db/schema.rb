@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170704170135) do
     t.text "details"
     t.date "end_date"
     t.integer "reserve_price"
-    t.integer "current_price"
+    t.integer "current_price", default: 1
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

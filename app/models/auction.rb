@@ -1,5 +1,11 @@
 class Auction < ApplicationRecord
   belongs_to :user
+  has_many :bids, dependent: :destroy
+
+  validates :reserve_price, presence: { message: 'must be provided'}
+  validates :title, presence: { message: 'must be provided'}
+
+  before_save :default_values
 
   include AASM
 
@@ -19,6 +25,10 @@ class Auction < ApplicationRecord
       transitions from: [:published, :reserve_not_met], to: :reserve_met
     end
 
+  end
+
+  def default_values
+    self.current_price ||= 1
   end
 
 end
