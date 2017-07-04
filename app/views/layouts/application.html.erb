@@ -9,6 +9,14 @@
   </head>
 
   <body>
+    <nav class='pull-right'>
+      <% if user_signed_in? %>
+        Hello, <%= current_user.name %> |
+        <%= link_to 'Sign Out', sessions_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Sign In', new_session_path %>
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>
