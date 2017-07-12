@@ -1,6 +1,6 @@
 class AuctionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_auction, only: [:edit, :show, :update, :destroy]
+  before_action :find_auction, except: [:index]
 
   def index
     @auctions = Auction.order(created_at: :desc)
@@ -8,9 +8,7 @@ class AuctionsController < ApplicationController
   end
 
   def show
-    @bid = Bid.new
     @bids = @auction.bids.order(created_at: :desc)
-    render :show
   end
 
   def new
@@ -31,7 +29,7 @@ class AuctionsController < ApplicationController
     if @auction.update aasm_state: params[:aasm_state]
       flash[:notice] = 'Published!'
     else
-      flash[:alert] = @auction.errors.full_messages.join(', ')
+      flash[:alert] = @auction.errors.full_messages.to_sentence
     end
     redirect_to @auction
   end

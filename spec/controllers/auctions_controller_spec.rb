@@ -1,25 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe AuctionsController, type: :controller do
-  let(:user) {FactoryGirl.create(:user)}
-  let(:auction) {FactoryGirl.create(:auction)}
-  let(:bid) {FactoryGirl.create(:bid)}
+  let(:user) { FactoryGirl.create(:user) }
+  let(:auction) { FactoryGirl.create(:auction) }
+  let(:bid) { FactoryGirl.create(:bid) }
 
   describe '#index' do
+    subject { get :index }
+
+    before { subject }
+
     context 'with no user signed in' do
       it 'renders index template' do
-        get :index
         expect(response).to render_template(:index)
       end
     end
     context 'with user signed in' do
-      before {request.session[:user_id] = user.id}
+      # This can be moved into the spec helpers
+      before { request.session[:user_id] = user.id }
+
       it 'renders index template' do
-        get :index
         expect(response).to render_template(:index)
       end
     end
-  end # describe#index
+  end
 
 
   # describe '#show' do
@@ -39,26 +43,28 @@ RSpec.describe AuctionsController, type: :controller do
   # end # describe#show
 
   describe '#new' do
+    subject { get :new }
+
     context 'with no user signed in' do
       it 'redirects to the sign in page' do
-        get :new
         expect(response).to redirect_to(new_session_path)
       end
     end
 
     context 'with user signed in' do
-      before {request.session[:user_id] = user.id}
+      before { request.session[:user_id] = user.id }
+
       it 'redirect_to new auction page' do
-        get :new
         expect(response).to render_template(:new)
       end
     end
   end # describe#new
 
   describe '#create' do
+    subject { post :create }
+
     context 'with no user signed in' do
       it 'redirects to the sign in page' do
-        post :create
         expect(response).to redirect_to(new_session_path)
       end
     end
